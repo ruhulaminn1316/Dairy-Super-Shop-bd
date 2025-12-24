@@ -20,9 +20,9 @@ SECRET_KEY = 'django-insecure-4^hblj$3@q-n3mp%vmvy&367_c*@jqj$bo7@25wq_6mkd9gu&f
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'dailydairyshop-3.onrender.com',
+    'dairy-super-shop-bd.onrender.com',
+    'localhost',
     '127.0.0.1',
-    'localhost'
 ]
 
 # ---------------- LOGIN ----------------
