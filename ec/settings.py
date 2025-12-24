@@ -19,11 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4^hblj$3@q-n3mp%vmvy&367_c*@jqj$bo7@25wq_6mkd9gu&f'
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'dairy-super-shop-bd.onrender.com',
-    'localhost',
-    '127.0.0.1',
-]
 
 # ---------------- LOGIN ----------------
 LOGIN_URL = '/accounts/login/'
