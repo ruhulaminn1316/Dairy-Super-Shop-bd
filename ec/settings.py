@@ -30,6 +30,7 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
     'dailydairyshop-3.onrender.com',
+    'dairy-shop-bd.onrender.com',
     '127.0.0.1',
     'localhost',
     '.onrender.com'
@@ -189,4 +190,3 @@ BKASH_BASE_URL = os.environ.get('BKASH_BASE_URL', 'https://tokenized-sandbox.bka
 NAGAD_MERCHANT_ID = os.environ.get('NAGAD_MERCHANT_ID', '')
 NAGAD_MERCHANT_PASS = os.environ.get('NAGAD_MERCHANT_PASS', '')
 NAGAD_BASE_URL = os.environ.get('NAGAD_BASE_URL', 'https://sandbox.mynagad.com')
-
