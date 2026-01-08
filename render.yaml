@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: dairy-super-shop
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn ec.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: False
