@@ -399,42 +399,25 @@
                 </div>
             </div>
 
-            <!-- Summary bar -->
-            <div class="cart-summary-bar">
-                <div class="cart-summary-text">
-                    <span class="text-muted">Total items:</span>
-                    <strong>{{ cart_items|length }}</strong>
-                    &nbsp;•&nbsp;
-                    <span class="text-muted">Grand Total:</span>
-                    <span class="cart-grand-total">৳{{ total|floatformat:2 }}</span>
-                </div>
+           <!-- Summary bar -->
+<div class="cart-summary-bar">
+    <div class="cart-summary-text">
+        <span class="text-muted">Total items:</span>
+        <strong>{{ cart_items|length }}</strong>
+        &nbsp;•&nbsp;
+        <span class="text-muted">Grand Total:</span>
+        <span class="cart-grand-total">৳{{ total|floatformat:2 }}</span>
+    </div>
 
-                <div class="cart-summary-cta">
-                    <a href="{% url 'home' %}" class="btn btn-continue-shop">
-                        <i class="bi bi-arrow-left-short"></i> Continue Shopping
-                    </a>
+    <div class="cart-summary-cta">
+        <a href="{% url 'home' %}" class="btn btn-continue-shop">
+            <i class="bi bi-arrow-left-short"></i> Continue Shopping
+        </a>
+    </div>
+</div>
 
-                    <!-- If later you add a full-cart checkout, point this to checkout URL -->
-                    <a href="{% url 'cart' %}" class="btn btn-checkout-all">
-                        Proceed to Checkout
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-    {% else %}
-        <div class="empty-cart-modern">
-            <i class="bi bi-cart-x fs-1 text-primary mb-3"></i>
-            <h3 class="mb-2">Your cart is empty</h3>
-            <p class="mb-3">
-                Browse our fresh dairy products and add your favorites to the cart.
-            </p>
-            <a href="{% url 'home' %}" class="btn btn-empty-shop">
-                <i class="bi bi-shop me-1"></i> Start Shopping
-            </a>
-        </div>
     {% endif %}
+
 </div>
 
 {% endblock %}

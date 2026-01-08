@@ -8,10 +8,8 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     # ================= AUTH =================
-    # ❌ login removed (handled by allauth)
-
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
-    path('register/', views.register, name='register'),
+    # path('register/', views.register, name='register'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
 
     # ================= CATEGORY =================
@@ -38,15 +36,15 @@ urlpatterns = [
     # ================= SEARCH =================
     path('search/', views.search, name='search'),
 
-    # ================= BUY / CHECKOUT =================
+    # ================= BUY NOW =================
     path('buy-now/<int:product_id>/', views.buy_now, name='buy_now'),
-    path('checkout/', views.checkout, name='checkout'),
-    path('checkout/<int:order_id>/<str:gateway>/', views.checkout_start, name='checkout_start'),
 
-    # ================= PAYMENT CALLBACK =================
-    path('callbacks/bkash/', views.bkash_callback, name='bkash_callback'),
-    path('callbacks/nagad/', views.nagad_callback, name='nagad_callback'),
+    # ================= ORDERS =================
+    path('my-orders/', views.my_orders, name='my_orders'),
+    path('order-cancel/<int:order_id>/', views.cancel_order, name='cancel_order'),
 
-    # ================= ADMIN DASHBOARD =================
+    path('order-status/<int:order_id>/<str:status>/', views.update_order_status, name='order_status'),
+
+    # ================= ADMIN =================
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
 ]

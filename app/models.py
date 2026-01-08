@@ -47,7 +47,7 @@ class Cart(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     added_on = models.DateTimeField(auto_now_add=True)
-    ordered = models.BooleanField(default=False)  # To track if ordered
+    ordered = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.username} - {self.product.title} ({self.quantity})"
@@ -55,6 +55,7 @@ class Cart(models.Model):
     @property
     def total_price(self):
         return self.quantity * self.product.discounted_price
+
 
 # Wishlist model
 class Wishlist(models.Model):
@@ -64,24 +65,45 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.product.title}"
-
+# Order model
 class Order(models.Model):
+
     STATUS_CHOICES = (
-        ('pending','Pending'),
-        ('paid','Paid'),
-        ('failed','Failed'),
-        ('cancelled','Cancelled'),
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected'),
+        ('paid', 'Paid'),
+        ('failed', 'Failed'),
+        ('cancelled', 'Cancelled'),
     )
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-    # optional fields:
     shipping_address = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"Order #{self.id} - {self.user} - {self.status}"
+
 
 class Transaction(models.Model):
     GATEWAY_CHOICES = (
