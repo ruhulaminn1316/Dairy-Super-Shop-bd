@@ -24,14 +24,16 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = True  # Render এ কাজ করার পর False করো
 
-ALLOWED_HOSTS = [
-    'dairy-super-shop-bd.onrender.com',
-    '127.0.0.1',
-    'localhost',
-]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+if not DEBUG:
+    ALLOWED_HOSTS.extend([
+        '.onrender.com',
+    ])
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://dairy-super-shop-bd.onrender.com',
+    'https://*.onrender.com',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 # --------------------------------------------------
@@ -41,9 +43,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sharatacharjee6@gmail.com'
-EMAIL_HOST_PASSWORD = 'iyxrzfhdjoxvguhq'
-DEFAULT_FROM_EMAIL = 'Daily Dairy Shop <sharatacharjee6@gmail.com>'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'your-email@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Daily Dairy Shop <your-email@gmail.com>')
 
 # --------------------------------------------------
 # LOGIN / LOGOUT
@@ -119,9 +121,9 @@ SOCIALACCOUNT_PROVIDERS = {
 # CLOUDINARY
 # --------------------------------------------------
 cloudinary.config(
-    cloud_name="dfkzni71h",
-    api_key="813172256721514",
-    api_secret="bip7IZdpeaHp9w71Up-HncjPoX0",
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', 'your-cloud-name'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY', ''),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET', ''),
     secure=True
 )
 
