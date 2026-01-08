@@ -9,42 +9,52 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-# ---------------- BASE DIR ----------------
+# --------------------------------------------------
+# BASE DIR
+# --------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ---------------- SECURITY ----------------
+# --------------------------------------------------
+# SECURITY
+# --------------------------------------------------
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
     'django-insecure-4^hblj$3@q-n3mp%vmvy&367_c*@jqj$bo7@25wq_6mkd9gu&f'
 )
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = True  # Render এ কাজ করার পর False করো
 
 ALLOWED_HOSTS = [
-    'dairy-shop-bd.onrender.com',
+    'dairy-super-shop-bd.onrender.com',
     '127.0.0.1',
     'localhost',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://dairy-shop-bd.onrender.com',
+    'https://dairy-super-shop-bd.onrender.com',
 ]
 
-# ---------------- EMAIL ----------------
+# --------------------------------------------------
+# EMAIL
+# --------------------------------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ruhulaminn1316@gmail.com'
+EMAIL_HOST_USER = 'sharatacharjee6@gmail.com'
 EMAIL_HOST_PASSWORD = 'iyxrzfhdjoxvguhq'
-DEFAULT_FROM_EMAIL = 'Daily Dairy Shop <ruhulaminn1316@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Daily Dairy Shop <sharatacharjee6@gmail.com>'
 
-# ---------------- LOGIN ----------------
+# --------------------------------------------------
+# LOGIN / LOGOUT
+# --------------------------------------------------
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# ---------------- MESSAGE TAGS ----------------
+# --------------------------------------------------
+# MESSAGE TAGS
+# --------------------------------------------------
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
     messages.INFO: 'info',
@@ -53,7 +63,9 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-# ---------------- INSTALLED APPS ----------------
+# --------------------------------------------------
+# INSTALLED APPS
+# --------------------------------------------------
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -80,7 +92,9 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-# ---------------- AUTH BACKENDS ----------------
+# --------------------------------------------------
+# AUTHENTICATION
+# --------------------------------------------------
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -91,7 +105,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-# ---------------- GOOGLE OAUTH ----------------
+# --------------------------------------------------
+# GOOGLE OAUTH
+# --------------------------------------------------
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': ['profile', 'email'],
@@ -99,7 +115,9 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# ---------------- CLOUDINARY ----------------
+# --------------------------------------------------
+# CLOUDINARY
+# --------------------------------------------------
 cloudinary.config(
     cloud_name="dfkzni71h",
     api_key="813172256721514",
@@ -109,7 +127,9 @@ cloudinary.config(
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# ---------------- MIDDLEWARE ----------------
+# --------------------------------------------------
+# MIDDLEWARE
+# --------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -120,14 +140,16 @@ MIDDLEWARE = [
 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 
-    # REQUIRED for allauth
+    # REQUIRED for django-allauth
     'allauth.account.middleware.AccountMiddleware',
 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ---------------- URL / TEMPLATE ----------------
+# --------------------------------------------------
+# URL / TEMPLATES
+# --------------------------------------------------
 ROOT_URLCONF = 'ec.urls'
 
 TEMPLATES = [
@@ -148,7 +170,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ec.wsgi.application'
 
-# ---------------- DATABASE ----------------
+# --------------------------------------------------
+# DATABASE
+# --------------------------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -156,7 +180,9 @@ DATABASES = {
     }
 }
 
-# ---------------- PASSWORD VALIDATORS ----------------
+# --------------------------------------------------
+# PASSWORD VALIDATION
+# --------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -164,13 +190,17 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ---------------- I18N ----------------
+# --------------------------------------------------
+# INTERNATIONALIZATION
+# --------------------------------------------------
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# ---------------- STATIC ----------------
+# --------------------------------------------------
+# STATIC / MEDIA
+# --------------------------------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
